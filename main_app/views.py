@@ -1,7 +1,9 @@
 from django.shortcuts import render
+from django.views.generic.edit import CreateView
+from .models import Goal
 
 goals = [
-    {'name'},
+  {'name'},
 ]
 
 # Create your views here.
@@ -17,3 +19,7 @@ def goals_index(request):
   return render(request, 'goals/index.html', {
     'goals': goals
   })
+
+class GoalCreate(CreateView):
+  model = Goal
+  fields = '__all__'
