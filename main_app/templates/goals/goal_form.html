@@ -11,7 +11,7 @@
 <form action="" method="POST">
   {% csrf_token %}
   <table>
-    {{form.as_p}}
+    {{form.as_table}}
     <tr>
       <!-- <td>
         <input type="text" name="activities" class="activities-inserted" value="{{ object.activities.all|join:', ' }}">

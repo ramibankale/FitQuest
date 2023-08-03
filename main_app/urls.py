@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),  # Update 'index' URL pattern
     path('about/', views.about, name='about'),
-    path('goals/', views.GoalList.as_view(), name='index'),
+    path('goals/', views.GoalList.as_view(), name='goals_index'),
     path('goals/create/', views.GoalCreate.as_view(), name='goal_create'),
     path('goals/<int:pk>/', views.GoalDetail.as_view(), name='goal_detail'),
     path('goals/<int:pk>/update/', views.GoalUpdate.as_view(), name='goal_update'),
