@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if object %}
+  <h1>Edit <span class="teal-text">{{ object.name }}</span></h1>
+{% else %}
+  <h1>Add Goal</h1>
+{% endif %}
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <table>
+    {{form.as_p}}
+    <tr>
+      <!-- <td>
+        <input type="text" name="activities" class="activities-inserted" value="{{ object.activities.all|join:', ' }}">
+      </td> -->
+    </tr>
+  </table>
+  <input type="submit" value="Submit!" class="btn">
+</form>
+
+<!-- Add the link to create a new goal
+{% if not object %}
+  <a href="{% url 'goal_create' %}" class="btn">Create New Goal</a>
+{% endif %} -->
+
+<script>
+  const fitnessCategoryEl = document.getElementById('id_fitness_category');
+  M.FormSelect.init(fitnessCategoryEl);
+  // const fitnessActivitiesEl = document.getElementById('id_activities');
+  // M.FormSelect.init(fitnessActivitiesEl);
+</script>
+{% endblock %}
+
+

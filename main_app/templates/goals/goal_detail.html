@@ -1,0 +1,35 @@
+<!-- goal_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ goal.name }}</h1>
+  <p>{{ goal.description }}</p>
+  <p>Fitness Category: {{ goal.fitness_category.name }}</p>
+  <p>Activites: {{goal.activities}}</p>
+  <p>Start Date: {{ goal.start_date }}</p>
+  <p>End Date: {{ goal.end_date }}</p>
+
+  <!-- <h2>Activities</h2>
+  <ul>
+    {% for activity in goal.activity_set.all %}
+      <li>{{ activity.name }}</li>
+    {% endfor %}
+  </ul> -->
+
+  <!-- Update Goal Link -->
+  <a href="{% url 'goal_update' goal.id %}" class="btn">Update</a>
+
+  <!-- Delete Goal Link with confirmation prompt -->
+  <a href="{% url 'goal_delete' goal.id %}" class="btn btn-danger" onclick=
+  "return confirm('Are you sure you want to delete this goal?');">Delete</a>
+
+  <!-- Save Goal Form -->
+  <form method="post" action="{% url 'goal_save' goal.id %}" style="display: inline;">
+    {% csrf_token %}
+    <input type="hidden" name="activities" value="{{ goal.activities }}">
+    <input type="submit" value="Save" class="btn">
+  </form>
+
+  <!-- Link back to Goals List -->
+  <a href="{% url 'index' %}" class="btn">Back to Goals</a>
+{% endblock %}

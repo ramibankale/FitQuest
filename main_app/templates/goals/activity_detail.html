@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Activity Details</h1>
+
+<div class="row">
+  <div class="col s6 col-offset-3">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ activity.name }}</span>
+        <p>Fitness Category: {{ activity.fitness_category.name }}</p>
+      </div>
+      <div class="card-action">
+        <a href="{% url 'Activity_update' activity.id %}">Edit</a>
+        <a href="{% url 'Activity_delete' activity.id %}">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
