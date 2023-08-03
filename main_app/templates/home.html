@@ -14,16 +14,10 @@
           <p>This app is designed to help you reach your fitness goals.
         We offer a variety of workouts and diets to choose from, as well as a community of like-minded individuals
         who can support you on your journey. Sign up today and start your fitness journey!</p>
-        <ul>
-          <li>Cardio workouts</li>
-          <li>Strength training workouts</li>
-          <li>Yoga workouts</li>
-          <li>Pilates workouts</li>
-        </ul>
         </div>
         {% if user.is_authenticated %} 
         {% else %}
-        <div class="card-action hoverable">
+        <div class="card-action hoverable" >
           <a href="{% url 'login' %}">Sign Up!</a>
           {% endif %}
         </div>
