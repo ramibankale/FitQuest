@@ -13,4 +13,14 @@ footer.page-footer {
     padding-top: 0;
     text-align: right;
 }
+nav {
+    background-color: rgb(193, 57, 220);
+}
 
+ul li a {
+    color: #e0e0e0;
+  }
+
+.page-footer {
+    background-color: #b873ab;
+}
