@@ -7,7 +7,8 @@
     <div class="col s12 m12">
       <div class="card">
         <div class="card-image">
-          <img src="https://hips.hearstapps.com/hmg-prod/images/swim-stroke-1657802395.jpg?crop=1.00xw:0.752xh;0,0.171xh&resize=1200:*",>
+          <img src="https://hips.hearstapps.com/hmg-prod/images/swim-stroke-1657802395.jpg?crop=1.00xw:0.752xh;0,0.171xh&resize=1200:*">
+          <!-- <img src="https://media.tenor.com/fOZ1I0xBzAkAAAAC/swim-butterfly-olympics.gif"> -->
           <span class="card-title">As far as cross-training goes, swimming is up there with the best.</span>
         </div>
         <div class="card-content">
@@ -18,7 +19,7 @@
         {% if user.is_authenticated %} 
         {% else %}
         <div class="card-action hoverable" >
-          <a href="{% url 'login' %}">Sign Up!</a>
+          <a href="{% url 'login' %}">Log In!</a>
           {% endif %}
         </div>
       </div>

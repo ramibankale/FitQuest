@@ -119,7 +119,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 # Add this variable to specify where successful logins should redirect to
-LOGIN_REDIRECT_URL = '/goals/'
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
 # Default primary key field type
