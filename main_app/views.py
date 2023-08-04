@@ -113,8 +113,8 @@ def unassoc_activity(request, goal_id, activity_id):
     return redirect('goal_detail', pk=goal_id)
 
 def form_valid(self, form):
-  form.instance.user = self.request.user
-  return super().form_valid(form)
+    form.instance.user = self.request.user
+    return super().form_valid(form)
   
 def signup(request):
   error_message = ''
@@ -129,3 +129,43 @@ def signup(request):
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
+
+
+# Create your views here.
+def home(request):
+  # Include an .html file extension - unlike when rendering EJS templates
+  return render(request, 'home.html')
+
+def about(request):
+  return render(request, 'about.html')
+
+@login_required
+def user_profile(request):
+  user_profile = UserProfile.objects.get(user=request.user)
+  return render(request, 'user_profile.html', {'user_profile': user_profile})
+
+@login_required
+def create_user_profile(request):
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST)
+        if form.is_valid():
+            user_profile = form.save(commit=False)
+            user_profile.user = request.user
+            user_profile.save()
+            return redirect('user_profile')
+    else:
+        form = UserProfileForm()
+    return render(request, 'create_user_profile.html', {'form': form})
+
+@login_required
+def update_user_profile(request):
+    user_profile = UserProfile.objects.get(user=request.user)
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=user_profile)
+        if form.is_valid():
+            form.save()
+            return redirect('user_profile')
+    else:
+        form = UserProfileForm(instance=user_profile)
+    return render(request, 'update_user_profile.html', {'form': form})
+

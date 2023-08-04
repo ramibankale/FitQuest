@@ -30,5 +30,20 @@ class Goal(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+<<<<<<< HEAD
     def __str__(self):
         return self.name
+=======
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
+    age = models.PositiveIntegerField()
+    gender = models.CharField(max_length=10, choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')])
+    weight = models.FloatField()
+    height = models.FloatField()
+
+    def __str__(self):
+        return f"{self.user.username}'s Profile"
+    
+>>>>>>> a4da8e21778eafa0b35755153503040919dd0e15
