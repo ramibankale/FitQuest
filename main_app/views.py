@@ -32,7 +32,7 @@ class GoalCreate(LoginRequiredMixin, CreateView):
     model = Goal
     # form_class = GoalForm'
     fields =['name', 'description', 'fitness_category', 'activities', 'start_date', 'end_date']
-    template_name = 'goals/goal_form.html'
+    template_name = 'main_app/goal_form.html'
 
     def form_valid(self, form):
         # self.request.user is the logged in user
@@ -42,19 +42,24 @@ class GoalCreate(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
     def get_success_url(self):
-        return '/goals/'  
+        return '/goals'  
 
 class GoalUpdate(LoginRequiredMixin, UpdateView):
     model = Goal
-    form_class = GoalForm
-    template_name = 'goals/goal_form.html'
+    fields = '__all__'
+    template_name = 'main_app/goal_form.html'
 
     def get_success_url(self):
-        return '/goals/'  # Redirect to the goals index page after updating a goal
+        return '/goals'  # Redirect to the goals index page after updating a goal
 
 class GoalDelete(LoginRequiredMixin, DeleteView):
     model = Goal
-    success_url = '/goals/'  # Redirect to the goals index page after deleting a goal
+    # template_name = 'goals/index.html'
+    success_url = '/goals'  # Redirect to the goals index page after deleting a goal
+
+    def get_success_url(self):
+        return '/goals'  # Redirect to the goals index page after updating a goal
+
 
 @login_required 
 def save_goal(request, pk):
@@ -68,7 +73,7 @@ def save_goal(request, pk):
 class GoalDetail(LoginRequiredMixin, DetailView):
     model = Goal
     template_name = 'goals/goal_detail.html'  # Replace this with your desired template path for goal detail
-    context_object_name = 'goal'
+    # context_object_name = 'goal'
 
 class GoalList(LoginRequiredMixin, ListView):
     model = Goal

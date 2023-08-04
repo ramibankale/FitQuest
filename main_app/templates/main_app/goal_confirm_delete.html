@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Delete Goal</h1>
+  <p>Are you sure you want to delete the goal "{{ object.name }}"?</p>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Confirm Delete" class="btn btn-danger">
+    <a href="{% url 'goal_detail' goal.id %}" class="btn btn-secondary">Cancel</a>
+  </form>
+{% endblock %}
