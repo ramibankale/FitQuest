@@ -11,7 +11,6 @@ urlpatterns = [
     path('goals/<int:pk>/update/', views.GoalUpdate.as_view(), name='goal_update'),
     path('goals/<int:pk>/delete/', views.GoalDelete.as_view(), name='goal_delete'),
     path('goals/<int:pk>/save/', views.save_goal, name='goal_save'),
-
     path('goals/<int:goal_id>/assoc_activity/<int:activity_id>/', views.assoc_activity, name='assoc_activity'),
     path('goals/<int:goal_id>/unassoc_activity/<int:activity_id>/', views.unassoc_activity, name='unassoc_activity'),
     path('activities/', views.ActivityList.as_view(), name='activity_list'),
@@ -20,5 +19,4 @@ urlpatterns = [
     path('activity/<int:pk>/update/', views.ActivityUpdate.as_view(), name='activity_update'),
     path('activity/<int:pk>/delete/', views.ActivityDelete.as_view(), name='activity_delete'),
     path('accounts/signup/', views.signup, name='signup'),
-
 ]
