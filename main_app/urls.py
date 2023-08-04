@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+
 	
 urlpatterns = [
     path('', views.home, name='home'),  # Update 'index' URL pattern
@@ -18,4 +19,6 @@ urlpatterns = [
     path('activity/create/', views.ActivityCreate.as_view(), name='activity_create'),
     path('activity/<int:pk>/update/', views.ActivityUpdate.as_view(), name='activity_update'),
     path('activity/<int:pk>/delete/', views.ActivityDelete.as_view(), name='activity_delete'),
+    path('accounts/signup/', views.signup, name='signup'),
+
 ]
