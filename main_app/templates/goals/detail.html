@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Goal <Details></Details></h1>
+
+{% for goal in goals %}
+  <a href="{% url 'goal_detail' goal.id %}">
+    <div class="card">
+      <div class="card-content">
+        <span class="card-title">{{ goal.name }}</span>
+        <p>Fitness Category: {{ goal.fitness_category.get_name_display }}</p>
+        <p>Description: {{ goal.description|linebreaks }}</p>
+        <p>Start Date: {{ goal.start_date }}</p>
+        <p>End Date: {{ goal.end_date }}</p>
+      </div>
+    </div>
+  </a>
+{% endfor %}
+
+{% endblock %}
