@@ -14,6 +14,7 @@
 <body>
   <header class="navbar-fixed">
     <nav>
+       <!-- <p>THIS IS THE USER ID{{ user.id }}</p> -->
       <div class="nav-wrapper">
         <ul>
           <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;FitQuest</a></li>
@@ -22,7 +23,8 @@
           <li><a href="{% url 'about' %}">About</a></li>
           {% if user.is_authenticated %} 
           <li><a href="{% url 'user_profile' %}">User Profile</a></li>
-          <li><a href="{% url 'update_user_profile' %}">Update User Profile</a></li>
+          <li><a href="{% url 'update_user_profile' user_id=request.user.id %}">Update User Profile</a></li>
+  
           <li><a href="{% url 'index' %}">My Goals</a></li>
           <li><a href="{% url 'goals_create' %}">Add a Goal</a></li>
           <li><a href="{% url 'logout' %}">Log Out</a></li>

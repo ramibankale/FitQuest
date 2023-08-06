@@ -37,7 +37,7 @@ class Profile(models.Model):
     first_name = models.CharField(max_length=50, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=True, blank=True)
     age = models.PositiveIntegerField(null=True, blank=True)
-    gender = models.CharField(max_length=10, choices=[('Male', 'Male'), ('Female', 'Female'), ('Other', 'Other')], null=True, blank=True)
+    gender = models.CharField(max_length=10, null=True, blank=True)
     weight = models.FloatField(null=True, blank=True)
     height = models.FloatField(null=True, blank=True)
 

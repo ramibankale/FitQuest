@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from django import forms
@@ -8,6 +8,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Profile
+from .forms import ProfileForm
 
 
 
@@ -145,10 +146,19 @@ def user_profile(request):
     # Get the user's profile associated with the logged-in user
     profile = request.user.profile
 
-    return render(request, 'user_profile.html', {'user': request.user, 'profile': profile})
+    return render(request, 'profile/user_profile.html', {'user': request.user, 'profile': profile})
 
 @login_required
 def update_user_profile(request, user_id):
-    user_profile = Profile.objects.get(pk=user_id)
-    user_profile.save()
+    # Retrieve the correct Profile instance based on the user_id
+    profile = get_object_or_404(Profile, user_id=user_id)
 
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('user_profile')  # Redirect to the user profile page after successful update
+    else:
+        form = ProfileForm(instance=profile)
+
+    return render(request, 'profile/update_user_profile.html', {'form': form})
