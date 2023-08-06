@@ -114,10 +114,6 @@ def unassoc_activity(request, goal_id, activity_id):
     goal.activities.remove(activity)
     return redirect('goal_detail', pk=goal_id)
 
-def form_valid(self, form):
-    form.instance.user = self.request.user
-    return super().form_valid(form)
-  
 def signup(request):
   error_message = ''
   if request.method == 'POST':
