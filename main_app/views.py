@@ -62,7 +62,6 @@ class GoalDelete(LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         return '/goals'  # Redirect to the goals index page after updating a goal
 
-
 @login_required 
 def save_goal(request, pk):
     if request.method == 'POST':
@@ -113,8 +112,8 @@ def unassoc_activity(request, goal_id, activity_id):
     return redirect('goal_detail', pk=goal_id)
 
 def form_valid(self, form):
-    form.instance.user = self.request.user
-    return super().form_valid(form)
+  form.instance.user = self.request.user
+  return super().form_valid(form)
   
 def signup(request):
   error_message = ''
@@ -123,7 +122,7 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('index')
+      return redirect('home')
     else:
       error_message = 'Invalid sing up - try again'
   form = UserCreationForm()
@@ -168,4 +167,3 @@ def update_user_profile(request):
     else:
         form = UserProfileForm(instance=user_profile)
     return render(request, 'update_user_profile.html', {'form': form})
-
