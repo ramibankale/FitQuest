@@ -7,8 +7,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from .models import Profile
+
 
 
 
@@ -115,18 +115,39 @@ def unassoc_activity(request, goal_id, activity_id):
     return redirect('goal_detail', pk=goal_id)
 
 def signup(request):
-    if request.method == 'POST':
-        name = request.POST['name']
-        email = request.POST['email']
-        password = request.POST['password']
-
-        user = User.objects.create_user(name, email, password)
-        user.save()
-
-        return redirect('home')
-
+  error_message = ''
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect('home')
     else:
-        return render(request, 'signup.html')
+      error_message = 'Invalid sign up - try again'
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
+
+
+# Create your views here.
+def home(request):
+  # Include an .html file extension - unlike when rendering EJS templates
+  return render(request, 'home.html')
+
+def about(request):
+  return render(request, 'about.html')
+
+@login_required
+def user_profile(request):
+    # Get the user's profile associated with the logged-in user
+    profile = request.user.profile
+
+    return render(request, 'user_profile.html', {'user': request.user, 'profile': profile})
+
+@login_required
+def update_user_profile(request, user_id):
+    user_profile = Profile.objects.get(pk=user_id)
+    user_profile.save()
 
 
 # def user_profile(request, user_id):
