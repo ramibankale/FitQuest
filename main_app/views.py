@@ -7,6 +7,8 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 
 
@@ -112,60 +114,34 @@ def unassoc_activity(request, goal_id, activity_id):
     goal.activities.remove(activity)
     return redirect('goal_detail', pk=goal_id)
 
-def form_valid(self, form):
-    form.instance.user = self.request.user
-    return super().form_valid(form)
-  
 def signup(request):
-  error_message = ''
-  if request.method == 'POST':
-    form = UserCreationForm(request.POST)
-    if form.is_valid():
-      user = form.save()
-      login(request, user)
-      return redirect('index')
-    else:
-      error_message = 'Invalid sing up - try again'
-  form = UserCreationForm()
-  context = {'form': form, 'error_message': error_message}
-  return render(request, 'registration/signup.html', context)
-
-
-# Create your views here.
-def home(request):
-  # Include an .html file extension - unlike when rendering EJS templates
-  return render(request, 'home.html')
-
-def about(request):
-  return render(request, 'about.html')
-
-@login_required
-def user_profile(request):
-  user_profile = UserProfile.objects.get(user=request.user)
-  return render(request, 'user_profile.html', {'user_profile': user_profile})
-
-@login_required
-def create_user_profile(request):
     if request.method == 'POST':
-        form = UserProfileForm(request.POST)
-        if form.is_valid():
-            user_profile = form.save(commit=False)
-            user_profile.user = request.user
-            user_profile.save()
-            return redirect('user_profile')
-    else:
-        form = UserProfileForm()
-    return render(request, 'create_user_profile.html', {'form': form})
+        name = request.POST['name']
+        email = request.POST['email']
+        password = request.POST['password']
 
-@login_required
-def update_user_profile(request):
-    user_profile = UserProfile.objects.get(user=request.user)
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=user_profile)
-        if form.is_valid():
-            form.save()
-            return redirect('user_profile')
-    else:
-        form = UserProfileForm(instance=user_profile)
-    return render(request, 'update_user_profile.html', {'form': form})
+        user = User.objects.create_user(name, email, password)
+        user.save()
 
+        return redirect('home')
+
+    else:
+        return render(request, 'signup.html')
+
+
+# def user_profile(request, user_id):
+#     user = User.objects.get(id=user_id)
+#     context = {
+#         'user': user,
+#     }
+#     return render(request, 'user_profile.html', context)
+
+# def create_user_profile(request):
+#     if request.method == 'POST':
+#         form = UserCreationForm(request.POST)
+#         if form.is_valid():
+#             new_user = form.save()
+#             return redirect('profile')
+#     else:
+#         form = UserCreationForm()
+#     return render(request, 'create_user_profile.html', {'form': form})
