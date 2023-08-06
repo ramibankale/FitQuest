@@ -24,3 +24,16 @@ ul li a {
 .page-footer {
     background-color: #b873ab;
 }
+
+.card-body {
+    background-color: rgb(238, 213, 238);
+}
+
+.card-img-top {
+    width: 200px;  /* Set the desired width */
+    height: 200px; /* Set the desired height */
+    border-radius: 50%;
+    border: 5px solid purple;
+    margin: 1em;
+}
+

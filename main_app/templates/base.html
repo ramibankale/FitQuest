@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+  
 </head>
 <body>
   <header class="navbar-fixed">
@@ -20,7 +21,7 @@
           <li><a href="{% url 'home' %}" class="left brand-logo">&nbsp;&nbsp;FitQuest</a></li>
         </ul>
         <ul class="right">
-          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
           {% if user.is_authenticated %} 
           <li><a href="{% url 'user_profile' %}">User Profile</a></li>
           <li><a href="{% url 'update_user_profile' user_id=request.user.id %}">Update User Profile</a></li>
