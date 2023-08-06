@@ -7,6 +7,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Profile
 
 
 
@@ -123,9 +124,9 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('index')
+      return redirect('home')
     else:
-      error_message = 'Invalid sing up - try again'
+      error_message = 'Invalid sign up - try again'
   form = UserCreationForm()
   context = {'form': form, 'error_message': error_message}
   return render(request, 'registration/signup.html', context)
@@ -141,31 +142,13 @@ def about(request):
 
 @login_required
 def user_profile(request):
-  user_profile = UserProfile.objects.get(user=request.user)
-  return render(request, 'user_profile.html', {'user_profile': user_profile})
+    # Get the user's profile associated with the logged-in user
+    profile = request.user.profile
+
+    return render(request, 'user_profile.html', {'user': request.user, 'profile': profile})
 
 @login_required
-def create_user_profile(request):
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST)
-        if form.is_valid():
-            user_profile = form.save(commit=False)
-            user_profile.user = request.user
-            user_profile.save()
-            return redirect('user_profile')
-    else:
-        form = UserProfileForm()
-    return render(request, 'create_user_profile.html', {'form': form})
-
-@login_required
-def update_user_profile(request):
-    user_profile = UserProfile.objects.get(user=request.user)
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=user_profile)
-        if form.is_valid():
-            form.save()
-            return redirect('user_profile')
-    else:
-        form = UserProfileForm(instance=user_profile)
-    return render(request, 'update_user_profile.html', {'form': form})
+def update_user_profile(request, user_id):
+    user_profile = Profile.objects.get(pk=user_id)
+    user_profile.save()
 
