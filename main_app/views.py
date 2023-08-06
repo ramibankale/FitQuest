@@ -11,7 +11,6 @@ from .models import Profile
 
 
 
-
 def home(request):
     return render(request, 'home.html')
 
@@ -149,20 +148,3 @@ def update_user_profile(request, user_id):
     user_profile = Profile.objects.get(pk=user_id)
     user_profile.save()
 
-
-# def user_profile(request, user_id):
-#     user = User.objects.get(id=user_id)
-#     context = {
-#         'user': user,
-#     }
-#     return render(request, 'user_profile.html', context)
-
-# def create_user_profile(request):
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             new_user = form.save()
-#             return redirect('profile')
-#     else:
-#         form = UserCreationForm()
-#     return render(request, 'create_user_profile.html', {'form': form})
