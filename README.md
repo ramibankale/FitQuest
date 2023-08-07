@@ -10,7 +10,8 @@ Update goals
 View all goals 
 
 # ERD:
-![image](https://github.com/ramibankale/FitQuest/assets/135625095/325c16e8-5535-41c4-9559-0329a0f3b45e)
+![Screen Shot 2023-08-07 at 9 19 56 AM](https://github.com/ramibankale/FitQuest/assets/64705060/ea1c87b7-7227-4250-bae6-5d7f30d74e54)
+
 
 
 # Screenshots:
