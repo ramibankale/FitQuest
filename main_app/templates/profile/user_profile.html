@@ -11,4 +11,6 @@
   <p><strong>Weight:</strong> {{ profile.weight }}</p>
   <p><strong>Height:</strong> {{ profile.height }}</p>
 
+  <a href="{% url 'update_user_profile' user_id=profile.user.id %}" class="btn btn-primary">Edit Profile</a>
+
 {% endblock %}
