@@ -8,9 +8,7 @@
   <p><strong>Last Name:</strong> {{ profile.last_name }}</p>
   <p><strong>Age:</strong> {{ profile.age }} years old</p>
   <p><strong>Gender:</strong> {{ profile.gender }}</p>
-  <p><strong>Weight:</strong> {{ profile.weight }} lbs</p>
-  <p><strong>Height:</strong> {{ profile.height }} feet</p>
-
-  <a href="{% url 'update_user_profile' user_id=profile.user.id %}" class="btn btn-primary">Edit Profile</a>
+  <p><strong>Weight:</strong> {{ profile.weight }}</p>
+  <p><strong>Height:</strong> {{ profile.height }}</p>
 
 {% endblock %}
