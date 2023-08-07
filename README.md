@@ -11,10 +11,10 @@ View all goals
 
 # Screenshots:
 
-
-
-
-# Technologies Used: Python, Django, HTML, CSS, Heroku
+landing page: 
+![image](https://github.com/ramibankale/FitQuest/assets/135625095/94676e9a-581a-4e78-b573-4596d9a7c6e9)
+# Technologies Used: 
+Python, Django, HTML, CSS, Heroku
 
 
 # Challenging code:
