@@ -9,6 +9,10 @@ Select fitness categories
 Update goals
 View all goals 
 
+# ERD:
+![image](https://github.com/ramibankale/FitQuest/assets/135625095/325c16e8-5535-41c4-9559-0329a0f3b45e)
+
+
 # Screenshots:
 
 landing page: 
