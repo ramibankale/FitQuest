@@ -14,7 +14,11 @@ View all goals
 landing page: 
 ![image](https://github.com/ramibankale/FitQuest/assets/135625095/94676e9a-581a-4e78-b573-4596d9a7c6e9)
 
-Add goal page:
+
+Usser Profile - where you can create and update profile
+![image](https://github.com/ramibankale/FitQuest/assets/135625095/ee6309e7-cfb1-404f-8031-fbdd8de7dfdc)
+
+Add goal page - where you select fitness categories and list the activities.
 ![image](https://github.com/ramibankale/FitQuest/assets/135625095/3163c46b-74be-45fd-a322-9d5178dfd4a2)
 
 # Technologies Used: 
